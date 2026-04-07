@@ -2,137 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --nav-height: 64px;
-    --bottom-nav-height: 72px;
-  }
+/* ---------------- THEME ---------------- */
 
-  * {
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-worship-bg text-worship-text font-body antialiased;
-    overflow-x: hidden;
-    min-height: 100dvh;
-  }
-
-  body.light {
-    @apply bg-gray-50 text-gray-900;
-  }
-
-  /* Scrollbar styling */
-  ::-webkit-scrollbar { width: 4px; height: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { @apply bg-worship-border rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-worship-muted; }
-}
-
-@layer components {
-  .card {
-    @apply bg-worship-card border border-worship-border rounded-2xl;
-  }
-
-  .card-hover {
-    @apply card transition-all duration-200 hover:border-worship-accent/40 hover:shadow-lg hover:shadow-worship-accent/5 cursor-pointer;
-  }
-
-  .btn-primary {
-    @apply bg-worship-accent text-worship-bg font-semibold px-4 py-2.5 rounded-xl 
-           transition-all duration-200 hover:bg-worship-highlight active:scale-95
-           disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-ghost {
-    @apply bg-transparent border border-worship-border text-worship-text-muted px-4 py-2.5 rounded-xl 
-           transition-all duration-200 hover:border-worship-accent hover:text-worship-accent active:scale-95;
-  }
-
-  .btn-icon {
-    @apply flex items-center justify-center w-10 h-10 rounded-xl 
-           bg-worship-surface border border-worship-border text-worship-text-muted
-           transition-all duration-200 hover:border-worship-accent hover:text-worship-accent active:scale-95;
-  }
-
-  .input {
-    @apply w-full bg-worship-surface border border-worship-border text-worship-text 
-           rounded-xl px-4 py-3 font-body text-sm placeholder-worship-muted
-           focus:outline-none focus:border-worship-accent focus:ring-1 focus:ring-worship-accent/30
-           transition-all duration-200;
-  }
-
-  .tag {
-    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium
-           bg-worship-surface border border-worship-border text-worship-text-muted;
-  }
-
-  .tag-accent {
-    @apply tag bg-worship-accent-soft border-worship-accent/30 text-worship-accent;
-  }
-
-  .chord-inline {
-    @apply font-mono text-worship-accent text-sm font-semibold relative;
-  }
-
-  .section-label {
-    @apply font-display italic text-worship-accent text-sm tracking-wide;
-  }
-
-  .shimmer {
-    background: linear-gradient(90deg, #1e1e2a 25%, #252535 50%, #1e1e2a 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-  }
-
-  /* Light mode overrides */
-  .light .card { @apply bg-white border-gray-200; }
-  .light .card-hover { @apply bg-white border-gray-200 hover:border-amber-400/60; }
-  .light .btn-ghost { @apply border-gray-300 text-gray-500 hover:border-amber-500 hover:text-amber-600; }
-  .light .btn-icon { @apply bg-gray-100 border-gray-200 text-gray-500 hover:border-amber-500 hover:text-amber-600; }
-  .light .input { @apply bg-gray-100 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-amber-500; }
-  .light .tag { @apply bg-gray-100 border-gray-200 text-gray-500; }
-  .light .shimmer { background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; }
-}
-
-/* High contrast mode */
-.high-contrast {
-  --tw-text-opacity: 1;
-}
-.high-contrast .card { border-width: 2px !important; }
-.high-contrast .chord-inline { @apply text-yellow-300; }
-
-/* Font size overrides */
-.font-sm { font-size: 14px !important; }
-.font-md { font-size: 16px !important; }
-.font-lg { font-size: 18px !important; }
-.font-xl { font-size: 20px !important; }
-
-/* Worship/performance mode */
-.worship-mode {
-  @apply fixed inset-0 z-50 bg-black text-white;
-}
 :root {
-  --bg: #ffffff;
-  --surface: #f8fafc;
-  --card: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --accent: #2563eb;
+  --bg: #0d0d14;
+  --surface: #16161f;
+  --card: #1e1e2a;
+  --border: #2a2a38;
+  --text: #f0eff8;
+  --text-muted: #9b9ab5;
+  --accent: #e8b86d;
+  --accent-soft: #2a2010;
 }
 
-.dark {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --card: #1e293b;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --border: #334155;
-  --accent: #60a5fa;
+body.light {
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --accent: #d97706;
+  --accent-soft: #fef3c7;
+}
+
+/* ---------------- BASE ---------------- */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+}
+
+/* ---------------- COMPONENTS ---------------- */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.card-hover {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: 0.2s;
+}
+
+.card-hover:hover {
+  border-color: var(--accent);
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.chord-inline {
+  color: var(--accent);
+  font-family: monospace;
+  font-weight: 600;
+}
+
+/* ---------------- SCROLLBAR ---------------- */
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
 }
